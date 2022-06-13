@@ -14,13 +14,13 @@ public class ForEach{
         }
         System.out.println(name);
 
+
         // will replace char 
         for (int i=0 ; i<name.length ; i++){
             if( name[i] == 'h'){
                 name[i] = 'L' ; 
             }
         }
-        
         System.out.println(name);
         System.out.println(new String(name));
     }
