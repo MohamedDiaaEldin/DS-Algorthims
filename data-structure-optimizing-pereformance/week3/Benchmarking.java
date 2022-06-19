@@ -10,8 +10,6 @@ public class Benchmarking{
 
     }
 
-
-
     private static double bench(){
         long start_time = System.nanoTime();
         // some algorithm 
@@ -22,7 +20,7 @@ public class Benchmarking{
         double est_time = (end_time - start_time) / 1000000000 ;         
         return est_time ; 
     }
-   
+     
     
     private static double bench_large(){
         long start_time = System.nanoTime();
