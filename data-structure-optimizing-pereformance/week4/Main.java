@@ -11,7 +11,7 @@ public class Main {
     list.addFront(30);
     list.addFront(40);
     list.addFront(50);
-    list.addFront(50);
+    list.addFront(60);
 
     // list.addLast(40);
     // list.addLast(10);
@@ -23,12 +23,26 @@ public class Main {
     // list.addLast(500);
 
     System.out.println(list);
-    list.set(0, 99999999) ;
-    System.out.println(list);
+    // list.set(0, 99999999) ;
+    // System.out.println(list);
   
     // list.removeLast();    
+    // list.removeLast();    
+    // list.removeLast();    
+    // list.removeLast();    
+    // list.removeLast();    
+    // list.removeLast();    
+    // list.removeLast();    
+    // first 
+    list.removeFirst();    
+    list.removeFirst();    
+    list.removeFirst();    
+    list.removeFirst();    
+    list.removeFirst();    
+    list.removeFirst();    
+    // list.removeFirst();    
     // list.test();
-    // System.out.println(list);
+    System.out.println(list);
 
     
   }
