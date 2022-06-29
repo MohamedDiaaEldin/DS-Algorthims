@@ -8,5 +8,9 @@ public class ListNode<E> {
     public ListNode(E data){
         this.data = data ;
     }
+
+    public String toString(){
+        return this.data.toString() ; 
+    }
     
 }
