@@ -1,7 +1,5 @@
 package week4;
 
-import org.w3c.dom.NodeList;
-
 public class MyLinkedList<E> {
     private ListNode<E> head ;    
     private ListNode<E> tail ;
@@ -38,8 +36,7 @@ public class MyLinkedList<E> {
           
             cur = tail.prev ; 
             int i = size-1 ;
-            while (cur != null){
-                System.out.println("index: " + i + " cur value: " + cur.data);
+            while (cur != null){                
                 if( i==index){
                     break;
                 }
@@ -65,16 +62,15 @@ public class MyLinkedList<E> {
 
      public void addLast(E data){
         ListNode<E> newNode = new ListNode<E>(data) ; 
-        
-        this.tail.prev.next = newNode;
-        newNode.next = tail;
-        this.tail.prev = newNode ;
+        newNode.prev = tail.prev ;
+        tail.prev = newNode ;
+        newNode.prev.next = newNode ;
+        newNode.next = tail ;
         size ++ ;
      }
 
 
-     /// enhance implementaion 
-     
+     /// TODO enhance implementaion 
     public E get(int index){
         if( index >= this.size || index < 0){
             throw new IndexOutOfBoundsException();
@@ -96,13 +92,15 @@ public class MyLinkedList<E> {
      public void addFront(E data){
         ListNode<E> newNode = new ListNode<E>(data) ;   
 
-        // course solution 
-        newNode.next = head.next ; 
-        newNode.prev = head.next.prev ; 
-        head.next = newNode ; 
-        this.size ++ ;
+            // course solution 
+            newNode.prev = head; 
+            newNode.next = head.next ; 
+            head.next.prev = newNode;
+            head.next = newNode ;
 
-        // another solution 
+            this.size ++ ; 
+
+        // // another solution 
         // ListNode<E> temp = head.next ; 
         // this.head.next = newNode ;
         // temp.prev = newNode ; 
@@ -115,7 +113,26 @@ public class MyLinkedList<E> {
         return this.size ; 
      }
 
+    public void test(){
+        // ListNode<E> cur = this.tail.prev ;  
+        ListNode<E> cur = this.head ;
+        while (cur.next != null){
+            System.out.println("curretn : " + cur);  
+            cur = cur.next;         
+        }
+
+    }
+     public void removeLast(){        
+            // System.out.println(this.tail);
+            // System.out.println(this.tail.prev);
+            // System.out.println(this.tail.prev.prev);
+
+        this.tail.prev.prev.next = this.tail ;
+        this.tail.prev = this.tail.prev.prev ;
+     } 
+
      public String toString(){
+        // if head is connected with the tail
         if( head.next.next == null){
             return "[]" ;
         }
