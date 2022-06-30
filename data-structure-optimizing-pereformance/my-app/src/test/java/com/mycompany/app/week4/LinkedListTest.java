@@ -1,9 +1,5 @@
 
 package com.mycompany.app.week4;
-
-
-import com.mycompany.app.week4.MyLinkedList;
-
 import org.junit.Before ;
 import org.junit.Test;
 
@@ -19,7 +15,6 @@ public class LinkedListTest{
     MyLinkedList<String> strList  ; 
     MyLinkedList<Integer> intList  ; 
     MyLinkedList<Integer> emptyList  ; 
-
 
 
     @Before
@@ -42,7 +37,6 @@ public class LinkedListTest{
         emptyList = new MyLinkedList<>();
         
     }
-
 
     @Test 
     public void testSize(){
@@ -114,7 +108,6 @@ public class LinkedListTest{
     }
 
 
-
     @Test
     public void testRemoveFirst(){
         try{
@@ -141,6 +134,12 @@ public class LinkedListTest{
     }
 
 
+    @Test 
+    public void testAddFront(){
+        strList.addFront("data");
+        assertEquals("check first ", "data", strList.get(0));
+        assertEquals("check first ", "mohamed", strList.get(1));
+    }
 
     
 }
