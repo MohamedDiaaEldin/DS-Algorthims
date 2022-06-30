@@ -1,4 +1,4 @@
-package week4;
+package com.mycompany.app.week4;
 
 public class MyLinkedList<E> {
     private ListNode<E> head;

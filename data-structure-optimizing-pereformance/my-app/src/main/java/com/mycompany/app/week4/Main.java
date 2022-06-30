@@ -1,5 +1,5 @@
-package week4;
-
+package com.mycompany.app.week4 ;
+// import org.junit.* ;
 
 public class Main {
 
@@ -26,13 +26,6 @@ public class Main {
     // list.set(0, 99999999) ;
     // System.out.println(list);
   
-    // list.removeLast();    
-    // list.removeLast();    
-    // list.removeLast();    
-    // list.removeLast();    
-    // list.removeLast();    
-    // list.removeLast();    
-    // list.removeLast();    
     // first 
     list.removeFirst();    
     list.removeFirst();    

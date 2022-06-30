@@ -1,4 +1,6 @@
-package week3 ;
+package com.mycompany.app.week3;
+
+
 public class Benchmarking{
     
 

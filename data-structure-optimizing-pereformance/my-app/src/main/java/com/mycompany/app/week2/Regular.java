@@ -1,4 +1,8 @@
-package week2;
+package com.mycompany.app.week2;
+
+
+
+
 
 public class Regular{
 
