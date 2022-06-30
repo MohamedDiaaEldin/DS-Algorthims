@@ -1,8 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.mycompany.app.week4.LinkedListTest
 -------------------------------------------------------------------------------
-Tests run: 2, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.036 s <<< FAILURE! - in com.mycompany.app.week4.LinkedListTest
-testGett(com.mycompany.app.week4.LinkedListTest)  Time elapsed: 0.009 s  <<< FAILURE!
-org.junit.ComparisonFailure: check first  expected:<mohame[]> but was:<mohame[d]>
-	at com.mycompany.app.week4.LinkedListTest.testGett(LinkedListTest.java:72)
-
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.09 s - in com.mycompany.app.week4.LinkedListTest

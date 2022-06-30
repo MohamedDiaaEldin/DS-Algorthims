@@ -1,5 +1,12 @@
 package com.mycompany.app.week4;
 
+/**
+ * get(int index)
+ * size()
+ * set(int index, E element)
+ * addLast() - addFirst()
+ * removeLast() - removeFirst()
+ */
 public class MyLinkedList<E> {
     private ListNode<E> head;
     private ListNode<E> tail;
@@ -15,15 +22,7 @@ public class MyLinkedList<E> {
         this.tail.prev = this.head;
     }
 
-    /**
-     * get
-     * size
-     * set
-     * add
-     * remove
-     * n0->n2->n1
-     */
-
+    // O(n/2) = O(n)
     public void set(int index, E element) {
         if (index >= size || index < 0) {
             throw new IndexOutOfBoundsException();
@@ -57,6 +56,7 @@ public class MyLinkedList<E> {
         }
     }
 
+    // O(1)
     public void addLast(E data) {
         ListNode<E> newNode = new ListNode<E>(data);
         newNode.prev = tail.prev;
@@ -66,25 +66,41 @@ public class MyLinkedList<E> {
         size++;
     }
 
-    /// TODO enhance implementaion
+    // O(n/2) = O(n)
     public E get(int index) {
         if (index >= this.size || index < 0) {
             throw new IndexOutOfBoundsException();
         }
 
-        ListNode<E> cur = this.head.next;
-        System.out.println(cur.data);
-        int i = 0;
-        while (cur != null) {
-            if (index == i) {
-                break;
+        ListNode<E> cur = null;
+        if (index > size / 2) {
+            int i = size - 1;
+            cur = this.tail.prev;
+            while (cur != null) {
+                if (index == i) {
+                    break;
+                }
+                i--;
+                cur = cur.prev;
             }
-            cur = cur.next;
-            i++;
+            return cur.data;
+
+        } else {
+            cur = this.head.next;
+            int i = 0;
+            while (cur != null) {
+                if (index == i) {
+                    break;
+                }
+                cur = cur.next;
+                i++;
+            }
+            return cur.data;
         }
-        return cur.data;
+
     }
 
+    /// O(1)
     public void addFront(E data) {
         ListNode<E> newNode = new ListNode<E>(data);
         newNode.prev = head;
@@ -94,28 +110,32 @@ public class MyLinkedList<E> {
         this.size++;
     }
 
+    // O(1)
     public int getSize() {
         return this.size;
     }
 
+    // O(1)
     public void removeLast() {
         if (size == 0) {
-            throw new NullPointerException("list in empty");
+            throw new IndexOutOfBoundsException("list in empty");
         }
         this.tail.prev.prev.next = this.tail;
         this.tail.prev = this.tail.prev.prev;
         size--;
     }
 
+    // O(1)
     public void removeFirst() {
         if (size == 0) {
-            throw new NullPointerException("list in empty");
-        } 
-        head.next.next.prev = head; 
-        head.next = head.next.next ; 
-        size -- ; 
+            throw new IndexOutOfBoundsException("list in empty");
+        }
+        head.next.next.prev = head;
+        head.next = head.next.next;
+        size--;
     }
 
+    // O(n)
     public String toString() {
         // if head is connected with the tail
         if (head.next.next == null) {
