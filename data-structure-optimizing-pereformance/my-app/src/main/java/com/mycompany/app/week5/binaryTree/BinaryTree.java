@@ -1,22 +1,43 @@
 package com.mycompany.app.week5.binaryTree;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class BinaryTree<E> {
     TreeNode<E> root;
 
-    public BinaryTree(){
-        root = new TreeNode<E>(null, null) ;
+    public BinaryTree() {
+        root = new TreeNode<E>(null, null);
     }
 
-    private void preOrder(TreeNode<E> node){
-        if (node != null){
-            System.out.println(node.getData());
-            node.visit() ; 
+    // depth first traversal
+    private void preOrder(TreeNode<E> node) {
+        if (node != null) {
+            node.visit();
             preOrder(node.getLeftChild());
             preOrder(node.getRightChild());
         }
     }
 
-    public void preOrder(){
+    // breadth first traversal
+    public void levelOrder() {
+        Queue<TreeNode<E>> visited = new LinkedList<>();
+        visited.add(root);
+        while ( ! visited.isEmpty() ) {
+            TreeNode<E> cur = visited.remove();
+            if (cur != null) {
+                cur.visit();
+                if (cur.getLeftChild() != null){
+                    visited.add(cur.getLeftChild());
+                }
+                if( cur.getRightChild() != null){
+                    visited.add(cur.getRightChild());
+                }
+            }
+        }
+    }
+
+    public void preOrder() {
         preOrder(root);
     }
 }
