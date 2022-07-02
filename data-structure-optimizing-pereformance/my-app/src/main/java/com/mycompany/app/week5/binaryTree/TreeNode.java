@@ -1,6 +1,6 @@
 package com.mycompany.app.week5.binaryTree;
 
-public class TreeNode<E> {
+public class TreeNode<E extends Comparable<E>>  {
 
     private TreeNode<E> parent;
     private TreeNode<E> leftChild;
@@ -41,5 +41,9 @@ public class TreeNode<E> {
     public void visit() {
         visited = true;
     }
+
+   
+    
+    
 
 }

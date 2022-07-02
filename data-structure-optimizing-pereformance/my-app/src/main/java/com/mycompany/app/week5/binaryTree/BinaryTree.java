@@ -3,7 +3,7 @@ package com.mycompany.app.week5.binaryTree;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class BinaryTree<E> {
+public class BinaryTree<E extends Comparable<E>> {
     TreeNode<E> root;
 
     public BinaryTree() {
@@ -36,6 +36,27 @@ public class BinaryTree<E> {
             }
         }
     }
+
+    
+    public boolean searchRec(TreeNode<E> node, E element){
+        if(node == null){
+            return false ;
+        }
+        else if( element.compareTo(node.getData()) == 0){
+            return true ; 
+        }
+        else if (element.compareTo(node.getData()) > 0){
+            return searchRec( node.getRightChild(),  element) ; 
+        }else{
+            return searchRec( node.getLeftChild(),  element) ; 
+        }        
+    }
+
+    public boolean search(E element){
+        
+        return true; 
+    }
+
 
     public void preOrder() {
         preOrder(root);
