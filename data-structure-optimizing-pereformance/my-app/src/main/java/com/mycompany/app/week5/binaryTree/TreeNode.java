@@ -37,6 +37,9 @@ public class TreeNode<E extends Comparable<E>>  {
     public E getData() {
         return this.data;
     }
+    public void setData(E element){
+        this.data = element ;
+    }
 
     public void visit() {
         visited = true;

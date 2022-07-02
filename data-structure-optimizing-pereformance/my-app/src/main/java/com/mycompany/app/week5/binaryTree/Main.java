@@ -4,16 +4,22 @@ public class Main {
     
 
     public static void main(String[] args) {
-        // BinaryTree<String> tree = new BinaryTree<String>() ; 
-        // tree.preOrder();
-        Integer big = 10 ;
-        Integer small = 2 ;
-        if (big.compareTo(small) > 0 ){
-            System.out.println("big is greater");
-        }
-        else{
-            System.out.println("big is not greater");
-        }
+        BSTree<Integer> tree = new BSTree<>() ; 
+
+        // tree.insertIteration(10) ; 
+        // tree.insertIteration(20) ; 
+        // tree.insertIteration(8) ;       
+
+        tree.insertRec(10) ; 
+        tree.insertRec(20) ; 
+        tree.insertRec(8) ; 
+
+
+        // System.out.println(tree.contains(8) );
+        // System.out.println(tree.contains(8) );
+        tree.levelOrder();
+   
+
 
     }
 
