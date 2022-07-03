@@ -138,13 +138,15 @@ public class BSTree<E extends Comparable<E>> {
     // delete
     public TreeNode<E> delete(E element) {
         TreeNode<E> cur = root;
+     
         while (cur != null) {
             int comp = element.compareTo(cur.getData());
             if (comp > 0) {
                 cur = cur.getRightChild();
             } else if (comp < 0) {
                 cur = cur.getLeftChild();
-            } else {
+            } else {// found                 
+                // delete node with only right child
                 if (cur.getRightChild() != null && cur.getLeftChild() == null) {
                     if (cur.getparent().getRightChild() == cur) {
                         cur.getparent().setRight(cur.getRightChild());
@@ -152,6 +154,7 @@ public class BSTree<E extends Comparable<E>> {
                         cur.getparent().setLeft(cur.getRightChild());
                     }
                     return cur;
+                    // delete node with only left child
                 } else if (cur.getLeftChild() != null && cur.getRightChild() == null) {
                     if (cur.getparent().getRightChild() == cur) {
                         cur.getparent().setRight(cur.getLeftChild());
@@ -160,7 +163,7 @@ public class BSTree<E extends Comparable<E>> {
                     }
                     return cur;
                 }
-
+                // delete node with no children
                 else if (cur.getRightChild() == null && cur.getLeftChild() == null) {
                     if (cur == cur.getparent().getRightChild()) {
                         cur.getparent().setRight(null);
@@ -168,6 +171,7 @@ public class BSTree<E extends Comparable<E>> {
                         cur.getparent().setLeft(null);
                     }
                     return cur;
+                    // delete node with two children
                 } else if (cur.getRightChild() != null && cur.getLeftChild() != null) {
                     // find smallest
                     TreeNode<E> smallest_parent = cur;
@@ -180,7 +184,7 @@ public class BSTree<E extends Comparable<E>> {
             }
 
         }
-
+        // not found 
         return null;
     }
 }
