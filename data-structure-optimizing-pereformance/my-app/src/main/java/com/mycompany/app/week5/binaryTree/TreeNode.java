@@ -20,7 +20,12 @@ public class TreeNode<E extends Comparable<E>>  {
         this.leftChild = new TreeNode<E>(data, this);
         return this.leftChild;
     }
-
+    public void setRight(TreeNode<E> node){ 
+        this.rightChild =node; 
+    }
+    public void setLeft(TreeNode<E> node){ 
+        this.leftChild =node; 
+    }
     public TreeNode<E> addRightChild(E data) {
         this.rightChild = new TreeNode<E>(data, this);
         return this.rightChild;
@@ -36,6 +41,9 @@ public class TreeNode<E extends Comparable<E>>  {
 
     public E getData() {
         return this.data;
+    }
+    public TreeNode<E> getparent(){
+        return this.parent ;
     }
     public void setData(E element){
         this.data = element ;

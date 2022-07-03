@@ -1,12 +1,9 @@
 package com.mycompany.app.week5.binaryTree;
 
-import java.util.Currency;
 import java.util.LinkedList;
 import java.util.Queue;
 
-import javax.lang.model.util.ElementScanner6;
-
-public class BSTree<E extends Comparable<E> > {
+public class BSTree<E extends Comparable<E>> {
     TreeNode<E> root;
 
     public BSTree() {
@@ -23,121 +20,167 @@ public class BSTree<E extends Comparable<E> > {
         }
     }
 
+    public void preOrder() {
+        preOrder(root);
+    }
+
     // breadth first traversal
     public void levelOrder() {
         Queue<TreeNode<E>> visited = new LinkedList<>();
         visited.add(root);
-        while ( ! visited.isEmpty() ) {
-            
+        while (!visited.isEmpty()) {
+
             TreeNode<E> cur = visited.remove();
-            System.out.println(cur.getData());
             if (cur != null) {
                 cur.visit();
-                if (cur.getLeftChild() != null){
+                System.out.println(cur.getData());
+                if (cur.getLeftChild() != null) {
                     visited.add(cur.getLeftChild());
                 }
-                if( cur.getRightChild() != null){
+                if (cur.getRightChild() != null) {
                     visited.add(cur.getRightChild());
                 }
             }
         }
     }
-    
-    public boolean searchRec(TreeNode<E> node, E element){
-        if(node == null){
-            return false ;
+
+    public boolean searchRec(TreeNode<E> node, E element) {
+        if (node == null) {
+            return false;
+        } else if (element.compareTo(node.getData()) == 0) {
+            return true;
+        } else if (element.compareTo(node.getData()) > 0) {
+            return searchRec(node.getRightChild(), element);
+        } else {
+            return searchRec(node.getLeftChild(), element);
         }
-        else if( element.compareTo(node.getData()) == 0){
-            return true ; 
-        }
-        else if (element.compareTo(node.getData()) > 0){
-            return searchRec( node.getRightChild(),  element) ; 
-        }else{
-            return searchRec( node.getLeftChild(),  element) ; 
-        }        
     }
 
-    public boolean contains(E element){        
-        return searchRec(root, element); 
+    public boolean contains(E element) {
+        return searchRec(root, element);
     }
 
-    public boolean conatinsIteration(E element){        
-        TreeNode<E> cur = root ;
-        while ( cur != null ){    
-            int comp = element.compareTo(cur.getData()) ;
-            if (comp  == 0 ){
-                return true ;
-            }
-            else if (comp > 0){
-                cur = cur.getRightChild() ;
-            }
-            else{
-                cur = cur.getLeftChild() ; 
+    public boolean conatinsIteration(E element) {
+        TreeNode<E> cur = root;
+        while (cur != null) {
+            int comp = element.compareTo(cur.getData());
+            if (comp == 0) {
+                return true;
+            } else if (comp > 0) {
+                cur = cur.getRightChild();
+            } else {
+                cur = cur.getLeftChild();
             }
         }
 
-        return false ;
+        return false;
     }
 
-    public boolean insertIteration(E element){        
-        TreeNode<E> cur = root ; 
-        if(cur.getData() == null){
+    public boolean insertIteration(E element) {
+        TreeNode<E> cur = root;
+        if (cur.getData() == null) {
             cur.setData(element);
-            return true ;             
+            return true;
         }
-        int comp = element.compareTo(cur.getData()) ; 
+        int comp = element.compareTo(cur.getData());
 
-        while (comp < 0 && cur.getLeftChild() != null || comp > 0 && cur.getRightChild() != null){
-            if(comp < 0){
-                cur = cur.getLeftChild() ;                
+        while (comp < 0 && cur.getLeftChild() != null || comp > 0 && cur.getRightChild() != null) {
+            if (comp < 0) {
+                cur = cur.getLeftChild();
+            } else {
+                cur = cur.getRightChild();
             }
-            else { 
-                cur = cur.getRightChild() ;                 
-            }            
-            comp = element.compareTo(cur.getData()) ; 
+            comp = element.compareTo(cur.getData());
         }
         //
-        if(comp < 0){
-            cur.addLeftChild(element) ;
-        }
-        else if (comp > 0){
-            cur.addRightChild(element) ; 
-        }  
-        else{
-            return false ; 
+        if (comp < 0) {
+            cur.addLeftChild(element);
+        } else if (comp > 0) {
+            cur.addRightChild(element);
+        } else {
+            return false;
         }
 
-        return true  ;        
-    }
-
-    public boolean insert(TreeNode<E> node , E element){
-        int comp = element.compareTo(node.getData()) ;
-        if (comp > 0 && node.getRightChild() != null){
-            return insert(node.getRightChild(), element) ;
-        }
-        else if (comp < 0 && node.getLeftChild() != null){
-            return insert(node.getLeftChild(), element) ; 
-        }
-        if(comp < 0){
-            node.addLeftChild(element) ;
-        }
-        else if (comp > 0){
-            node.addRightChild(element) ; 
-        }  
-        else{
-            return false ; 
-        }        
         return true;
     }
-    public boolean insertRec(E element){
-        if (root.getData() == null){
-            root.setData(element);
-            return true ;
+
+    // insert recursive solution
+    public boolean insert(TreeNode<E> node, E element) {
+        int comp = element.compareTo(node.getData());
+        if (comp > 0 && node.getRightChild() != null) {
+            return insert(node.getRightChild(), element);
+        } else if (comp < 0 && node.getLeftChild() != null) {
+            return insert(node.getLeftChild(), element);
         }
-        return insert(root, element) ;
+        if (comp < 0) {
+            node.addLeftChild(element);
+        } else if (comp > 0) {
+            node.addRightChild(element);
+        } else {
+            return false;
+        }
+        return true;
     }
 
-    public void preOrder() {
-        preOrder(root);
+    public boolean insertRec(E element) {
+        // if tree is empty
+        if (root.getData() == null) {
+            root.setData(element);
+            return true;
+        }
+        return insert(root, element);
+    }
+
+    public void set(E element) {
+        System.out.println(element);
+    }
+
+    // delete
+    public TreeNode<E> delete(E element) {
+        TreeNode<E> cur = root;
+        while (cur != null) {
+            int comp = element.compareTo(cur.getData());
+            if (comp > 0) {
+                cur = cur.getRightChild();
+            } else if (comp < 0) {
+                cur = cur.getLeftChild();
+            } else {
+                if (cur.getRightChild() != null && cur.getLeftChild() == null) {
+                    if (cur.getparent().getRightChild() == cur) {
+                        cur.getparent().setRight(cur.getRightChild());
+                    } else {
+                        cur.getparent().setLeft(cur.getRightChild());
+                    }
+                    return cur;
+                } else if (cur.getLeftChild() != null && cur.getRightChild() == null) {
+                    if (cur.getparent().getRightChild() == cur) {
+                        cur.getparent().setRight(cur.getLeftChild());
+                    } else {
+                        cur.getparent().setLeft(cur.getLeftChild());
+                    }
+                    return cur;
+                }
+
+                else if (cur.getRightChild() == null && cur.getLeftChild() == null) {
+                    if (cur == cur.getparent().getRightChild()) {
+                        cur.getparent().setRight(null);
+                    } else {
+                        cur.getparent().setLeft(null);
+                    }
+                    return cur;
+                } else if (cur.getRightChild() != null && cur.getLeftChild() != null) {
+                    // find smallest
+                    TreeNode<E> smallest_parent = cur;
+                    while (smallest_parent.getLeftChild() != null) {
+                        smallest_parent = smallest_parent.getLeftChild();
+                    }
+                    smallest_parent.getparent().setLeft(null);
+                    cur.setData(smallest_parent.getData());
+                }
+            }
+
+        }
+
+        return null;
     }
 }
