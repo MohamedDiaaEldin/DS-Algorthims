@@ -1,5 +1,5 @@
 
-
+# o(n)
 def roman_to_integer(roman):
     sym_nums = {
         "I":1,
