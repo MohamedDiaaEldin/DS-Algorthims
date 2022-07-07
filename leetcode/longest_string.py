@@ -12,6 +12,7 @@ def lengthOfLongestSubstringSet( s):
     max_str = set()
     l = 0
     max_len =  0 
+    
     for i in range(len(s)):            
         c = s[i]
         while c in max_str:           
