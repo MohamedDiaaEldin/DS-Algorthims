@@ -1,4 +1,8 @@
 
+
+from os import curdir
+
+
 class ListNode(object):
     def __init__(self, val=0, next=None):
         self.val = val
@@ -12,15 +16,15 @@ def isPalindrome(head):
         fast = fast.next.next
         slow = head.next
     
-    prv = None
+    new_head = ListNode()
     slow = slow.next
-    while slow:
-        old_next = slow.next 
-        slow.next =  prv  
-        prv = slow 
+    while slow:        
+        old_next = slow.next         
+        slow.next =  new_head.next  
+        new_head = slow 
         slow = old_next 
     
-    right , left = prv , head
+    right , left = new_head , head
     while right and left:
         
         if right.val != left.val :
@@ -44,3 +48,11 @@ def isPalindrome(head):
     #     l += 1 
     #     r -= 1
     # return True
+
+# [1,2,2,1]
+l = ListNode(1, None)
+l2 = ListNode(2, l)
+l3 = ListNode(2, l2)
+head = ListNode(1, l3)
+
+print(isPalindrome(head)) 
