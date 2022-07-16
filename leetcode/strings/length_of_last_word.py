@@ -9,3 +9,4 @@ def lengthOfLastWord( s):
 
 s = "   fly me   to   the moon  "
 print(lengthOfLastWord(s))
+
